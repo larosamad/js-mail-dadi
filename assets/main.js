@@ -31,3 +31,52 @@ function checkEMail() {
         console.log(`NONONONONO`);
     }
 }
+
+// Gioco dei dadi
+// Generare un numero random da 1 a 6, sia per il giocatore sia per il computer.
+// Stabilire il vincitore, in base a chi fa il punteggio più alto.
+// scrivere quante partite ha vinto il giocatore
+// scrivere quante partite ha vinto il computer
+
+let numberBtn = document.getElementById('numberBtn');
+numberBtn.addEventListener("click", numbersGenerator);
+
+let counterWinPlayer = []; 
+let counterWinCpu = [];
+
+function numbersGenerator() {
+    let numberPlayer = Math.floor((Math.random() * 6) + 1);  
+
+    let numberCpu = Math.floor((Math.random() * 6) + 1);
+
+    let result = document.getElementById('result').innerHTML = `Il tuo numero è ${numberPlayer}, il numero della CPU è ${numberCpu}.`
+
+    let verdict = document.getElementById('verdict');
+    let counterUser = document.getElementById('counterUser');
+    let counterCpu = document.getElementById('counterCpu');
+
+
+
+    if (numberPlayer === numberCpu ){
+        verdict.innerHTML = `Siete pari`;
+    } else if (numberPlayer > numberCpu){
+        verdict.innerHTML = `Hai vinto`;
+        counterWinPlayer.push(numberPlayer); 
+    } else {
+        verdict.innerHTML = `Hai perso`;
+        counterWinCpu.push(numberCpu);
+    }
+
+    if (counterWinPlayer.length === 1){
+        counterUser.innerHTML = `In totale hai vinto ${counterWinPlayer.length} volta`
+    } else {
+        counterUser.innerHTML = `In totale hai vinto ${counterWinPlayer.length} volte`
+    }
+
+    if (counterWinCpu.length === 1){
+        counterCpu.innerHTML = `e il PC ha vinto ${counterWinCpu.length} volta`
+    } else {
+        counterCpu.innerHTML = `e il Pc ha vinto ${counterWinCpu.length} volte`
+    }
+
+}
